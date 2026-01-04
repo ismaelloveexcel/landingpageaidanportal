@@ -332,13 +332,41 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
           }}
         >A collection of awesome apps built just for you</motion.p>
         
+        {/* Demogorgon behind button container */}
         <motion.div
-          className="mt-6 md:mt-8"
+          className="mt-10 md:mt-14 relative flex flex-col items-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          {/* Stranger Things themed button */}
+          {/* 3D Demogorgon Model - Behind the button */}
+          <motion.div
+            className="absolute -top-16 sm:-top-20 md:-top-24 lg:-top-28 flex justify-center pointer-events-none"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            {/* Subtle glow effect behind Demogorgon */}
+            <motion.div 
+              className="absolute inset-0 flex items-center justify-center"
+              animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.35, 0.2] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <div className="w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-96 lg:h-96 rounded-full blur-xl" 
+                style={{ background: "radial-gradient(circle, rgba(101, 67, 33, 0.4) 0%, rgba(139, 90, 43, 0.2) 40%, transparent 70%)" }}
+              />
+            </motion.div>
+            <motion.div 
+              className="w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-96 lg:h-96 cursor-pointer overflow-visible pointer-events-auto"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={onAdminClick}
+            >
+              <DemogorgonScene />
+            </motion.div>
+          </motion.div>
+          
+          {/* Stranger Things themed button - in front */}
           <motion.div
             animate={{ 
               boxShadow: [
@@ -348,7 +376,7 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
               ]
             }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="rounded-xl"
+            className="rounded-xl relative z-20"
           >
             <Button
               size="lg"
@@ -364,33 +392,6 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
               Explore Apps
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
-          </motion.div>
-        </motion.div>
-        
-        {/* 3D Demogorgon Model - Clickable Easter Egg to Admin */}
-        <motion.div
-          className="flex justify-center relative"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-        >
-          {/* Glow effect behind Demogorgon */}
-          <motion.div 
-            className="absolute inset-0 flex items-center justify-center pointer-events-none"
-            animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <div className="w-40 h-40 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full blur-lg" 
-              style={{ background: "radial-gradient(circle, rgba(139, 92, 246, 0.5) 0%, rgba(147, 51, 234, 0.3) 40%, transparent 70%)" }}
-            />
-          </motion.div>
-          <motion.div 
-            className="w-40 h-40 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-80 lg:h-80 cursor-pointer overflow-visible relative z-10"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={onAdminClick}
-          >
-            <DemogorgonScene />
           </motion.div>
         </motion.div>
         

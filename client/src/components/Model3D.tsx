@@ -57,11 +57,11 @@ function DemogorgonModel() {
     if ((child as THREE.Mesh).isMesh) {
       const mesh = child as THREE.Mesh;
       mesh.material = new THREE.MeshStandardMaterial({
-        color: new THREE.Color("hsl(280, 80%, 60%)"),
-        emissive: new THREE.Color("hsl(280, 90%, 40%)"),
-        emissiveIntensity: 0.5,
-        metalness: 0.3,
-        roughness: 0.4,
+        color: new THREE.Color("hsl(25, 50%, 25%)"),
+        emissive: new THREE.Color("hsl(25, 60%, 15%)"),
+        emissiveIntensity: 0.3,
+        metalness: 0.2,
+        roughness: 0.6,
       });
     }
   });
@@ -107,15 +107,15 @@ function NailBatModel() {
   );
 }
 
-// Static fallback for when WebGL is unavailable
+// Static fallback for when WebGL is unavailable - dark brown theme
 function DemogorgonFallback() {
   return (
     <div className="w-full h-full flex items-center justify-center">
       <div 
         className="w-32 h-32 md:w-48 md:h-48 rounded-full animate-pulse"
         style={{
-          background: "radial-gradient(ellipse at center, rgba(139, 92, 246, 0.6) 0%, rgba(147, 51, 234, 0.3) 50%, transparent 70%)",
-          boxShadow: "0 0 60px rgba(139, 92, 246, 0.5), 0 0 120px rgba(147, 51, 234, 0.3)"
+          background: "radial-gradient(ellipse at center, rgba(139, 90, 43, 0.6) 0%, rgba(101, 67, 33, 0.3) 50%, transparent 70%)",
+          boxShadow: "0 0 60px rgba(139, 90, 43, 0.5), 0 0 120px rgba(101, 67, 33, 0.3)"
         }}
       />
     </div>
@@ -147,11 +147,11 @@ export function DemogorgonScene() {
           style={{ background: "transparent", overflow: "visible" }}
           gl={{ alpha: true, antialias: true, premultipliedAlpha: false }}
         >
-          <ambientLight intensity={0.7} />
-          <pointLight position={[5, 5, 5]} intensity={1.5} color="#a855f7" />
-          <pointLight position={[-5, -5, 5]} intensity={1.2} color="#06b6d4" />
-          <pointLight position={[0, 5, -5]} intensity={1} color="#22c55e" />
-          <pointLight position={[0, -3, 3]} intensity={0.6} color="#8b5cf6" />
+          <ambientLight intensity={0.8} />
+          <pointLight position={[5, 5, 5]} intensity={1.5} color="#8B4513" />
+          <pointLight position={[-5, -5, 5]} intensity={1.2} color="#A0522D" />
+          <pointLight position={[0, 5, -5]} intensity={1} color="#D2691E" />
+          <pointLight position={[0, -3, 3]} intensity={0.8} color="#CD853F" />
           <Suspense fallback={null}>
             <DemogorgonModel />
           </Suspense>
