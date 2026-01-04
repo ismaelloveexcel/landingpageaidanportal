@@ -1,8 +1,19 @@
 import { Canvas } from "@react-three/fiber";
 import { useGLTF, Float } from "@react-three/drei";
-import { Suspense, useRef, Component, ReactNode } from "react";
+import { Suspense, useRef, Component, ReactNode, useState, useEffect } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
+
+// Check if WebGL is supported before rendering Canvas
+function isWebGLSupported(): boolean {
+  try {
+    const canvas = document.createElement("canvas");
+    const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+    return gl !== null && gl !== undefined;
+  } catch (e) {
+    return false;
+  }
+}
 
 // Error boundary to gracefully handle WebGL failures
 class WebGLErrorBoundary extends Component<{ children: ReactNode; fallback?: ReactNode }, { hasError: boolean }> {
@@ -13,6 +24,10 @@ class WebGLErrorBoundary extends Component<{ children: ReactNode; fallback?: Rea
 
   static getDerivedStateFromError() {
     return { hasError: true };
+  }
+
+  componentDidCatch() {
+    // Silently catch errors to prevent propagation
   }
 
   render() {
@@ -108,6 +123,22 @@ function DemogorgonFallback() {
 }
 
 export function DemogorgonScene() {
+  const [webglSupported, setWebglSupported] = useState<boolean | null>(null);
+  
+  useEffect(() => {
+    setWebglSupported(isWebGLSupported());
+  }, []);
+  
+  // Still loading check
+  if (webglSupported === null) {
+    return <DemogorgonFallback />;
+  }
+  
+  // No WebGL support - show fallback
+  if (!webglSupported) {
+    return <DemogorgonFallback />;
+  }
+  
   return (
     <WebGLErrorBoundary fallback={<DemogorgonFallback />}>
       <div className="w-full h-full overflow-visible">
