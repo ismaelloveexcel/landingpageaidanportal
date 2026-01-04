@@ -82,7 +82,6 @@ function HeroSection() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background" />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-      
       <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -104,9 +103,7 @@ function HeroSection() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight mb-6"
         >
-          <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
-            Epic App
-          </span>
+          <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">Awesome aidan</span>
           <br />
           <span className="text-white drop-shadow-2xl">
             Portal
@@ -141,7 +138,6 @@ function HeroSection() {
           </Button>
         </motion.div>
       </div>
-
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
         <motion.div
           animate={{ y: [0, 10, 0] }}
