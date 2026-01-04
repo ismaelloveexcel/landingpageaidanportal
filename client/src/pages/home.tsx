@@ -258,7 +258,7 @@ function PortalAnimation({ onComplete }: { onComplete: () => void }) {
 
 function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdminClick: () => void }) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4">
+    <section className="relative h-screen flex items-center justify-center px-4 overflow-hidden">
       {/* Enhanced background with better overlay */}
       <div className="absolute inset-0 z-0">
         <img
@@ -273,14 +273,14 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
       
       
       
-      <div className="relative z-10 text-center max-w-4xl mx-auto space-y-4">
+      <div className="relative z-10 text-center max-w-4xl mx-auto space-y-2 md:space-y-4">
         <motion.div
           initial={{ opacity: 0, y: 30, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           {/* Enhanced title with animated gradient */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight">
             <motion.span 
               className="block gaming-text-gradient"
               style={{ 
@@ -308,7 +308,7 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
         </motion.div>
         
         <motion.p
-          className="text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto font-normal"
+          className="text-sm sm:text-base md:text-lg text-foreground/80 max-w-2xl mx-auto font-normal"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -326,7 +326,7 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
           <Button
             size="lg"
             onClick={onExplore}
-            className="text-lg px-8 py-5 rounded-xl bg-gradient-to-r from-violet-500 via-purple-500 to-cyan-500 border-none animate-glow-pulse hover:scale-105 transition-transform duration-300 font-bold uppercase tracking-wide"
+            className="text-sm sm:text-base px-6 py-4 rounded-xl bg-gradient-to-r from-violet-500 via-purple-500 to-cyan-500 border-none animate-glow-pulse hover:scale-105 transition-transform duration-300 font-bold uppercase tracking-wide"
             data-testid="button-explore-apps"
           >
             <Gamepad2 className="w-6 h-6 mr-2" />
@@ -348,12 +348,12 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
             animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.7, 0.4] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           >
-            <div className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full blur-2xl" 
+            <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full blur-2xl" 
               style={{ background: "radial-gradient(circle, rgba(139, 92, 246, 0.5) 0%, rgba(147, 51, 234, 0.3) 40%, transparent 70%)" }}
             />
           </motion.div>
           <motion.div 
-            className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 cursor-pointer overflow-visible relative z-10"
+            className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 cursor-pointer overflow-visible relative z-10"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             onClick={onAdminClick}

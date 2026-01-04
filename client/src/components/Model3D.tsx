@@ -14,9 +14,8 @@ function DemogorgonModel() {
   useFrame(({ clock }) => {
     if (groupRef.current) {
       const t = clock.getElapsedTime();
-      groupRef.current.rotation.y = t * 0.4;
-      groupRef.current.position.y = Math.sin(t * 0.8) * 0.15;
-      groupRef.current.rotation.x = Math.sin(t * 0.5) * 0.1;
+      // Rotate back and forth 45 degrees each way (90 degrees total arc) - looking left and right
+      groupRef.current.rotation.y = Math.sin(t * 0.5) * 0.8; // About 45 degrees each direction
     }
   });
   
@@ -33,12 +32,11 @@ function DemogorgonModel() {
     }
   });
   
+  // Position model so feet are at the bottom - no floating
   return (
-    <Float speed={1.5} rotationIntensity={0.15} floatIntensity={0.25}>
-      <group ref={groupRef}>
-        <primitive object={scene} scale={2} position={[0, 0, 0]} />
-      </group>
-    </Float>
+    <group ref={groupRef}>
+      <primitive object={scene} scale={2} position={[0, -1.2, 0]} />
+    </group>
   );
 }
 
