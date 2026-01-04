@@ -218,7 +218,6 @@ function HeroSection({ onExplore }: { onExplore: () => void }) {
         {/* Additional radial glow effect */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-violet-900/20 via-transparent to-transparent" />
       </div>
-      
       <div className="relative z-10 text-center max-w-4xl mx-auto space-y-8">
         <motion.div
           initial={{ opacity: 0, y: 30, scale: 0.95 }}
@@ -254,16 +253,14 @@ function HeroSection({ onExplore }: { onExplore: () => void }) {
         </motion.div>
         
         <motion.p
-          className="text-xl md:text-2xl text-foreground/80 max-w-2xl mx-auto font-medium"
+          className="text-xl md:text-2xl text-foreground/80 max-w-2xl mx-auto font-normal"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           style={{
             textShadow: "0 2px 20px rgba(0,0,0,0.5)",
           }}
-        >
-          🎮 Your personal collection of awesome apps built just for you! 🚀
-        </motion.p>
+        >🎮 A collection of (almost) awesome apps built just for you! 🚀</motion.p>
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
