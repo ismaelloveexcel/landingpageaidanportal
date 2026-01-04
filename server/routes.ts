@@ -1,7 +1,17 @@
-import type { Express } from "express";
+import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertAppSchema } from "@shared/schema";
+
+const ADMIN_KEY = process.env.ADMIN_KEY || "aidan-portal-2024";
+
+function requireAdmin(req: Request, res: Response, next: NextFunction) {
+  const adminKey = req.headers["x-admin-key"];
+  if (adminKey !== ADMIN_KEY) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+  next();
+}
 
 export async function registerRoutes(
   httpServer: Server,
@@ -28,7 +38,7 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/apps", async (req, res) => {
+  app.post("/api/apps", requireAdmin, async (req, res) => {
     try {
       const parsed = insertAppSchema.safeParse(req.body);
       if (!parsed.success) {
@@ -41,7 +51,7 @@ export async function registerRoutes(
     }
   });
 
-  app.patch("/api/apps/:id", async (req, res) => {
+  app.patch("/api/apps/:id", requireAdmin, async (req, res) => {
     try {
       const updated = await storage.updateApp(req.params.id, req.body);
       if (!updated) {
@@ -53,7 +63,7 @@ export async function registerRoutes(
     }
   });
 
-  app.delete("/api/apps/:id", async (req, res) => {
+  app.delete("/api/apps/:id", requireAdmin, async (req, res) => {
     try {
       const deleted = await storage.deleteApp(req.params.id);
       if (!deleted) {
