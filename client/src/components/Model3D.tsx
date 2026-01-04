@@ -35,7 +35,7 @@ function DemogorgonModel() {
   // Position model so feet are at the bottom - no floating
   return (
     <group ref={groupRef}>
-      <primitive object={scene} scale={2} position={[0, -1.2, 0]} />
+      <primitive object={scene} scale={2.5} position={[0, -1.5, 0]} />
     </group>
   );
 }

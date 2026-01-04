@@ -344,23 +344,23 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
         
         {/* 3D Demogorgon Model - Clickable Easter Egg to Admin */}
         <motion.div
-          className="flex justify-center relative mb-4 md:mb-8"
+          className="flex justify-center relative"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
-          {/* Glow effect behind Demogorgon - reduced blur for sharper look */}
+          {/* Glow effect behind Demogorgon */}
           <motion.div 
             className="absolute inset-0 flex items-center justify-center pointer-events-none"
             animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           >
-            <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full blur-md" 
-              style={{ background: "radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, rgba(147, 51, 234, 0.2) 40%, transparent 70%)" }}
+            <div className="w-40 h-40 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full blur-lg" 
+              style={{ background: "radial-gradient(circle, rgba(139, 92, 246, 0.5) 0%, rgba(147, 51, 234, 0.3) 40%, transparent 70%)" }}
             />
           </motion.div>
           <motion.div 
-            className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 cursor-pointer overflow-visible relative z-10"
+            className="w-40 h-40 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-80 lg:h-80 cursor-pointer overflow-visible relative z-10"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             onClick={onAdminClick}
