@@ -81,13 +81,14 @@ function BackgroundEffects() {
     setShapes(newShapes);
   }, []);
   
-  const ShapeIcon = ({ shape, className }: { shape: FloatingShape["shape"]; className: string }) => {
+  const ShapeIcon = ({ shape, className, size }: { shape: FloatingShape["shape"]; className: string; size: number }) => {
+    const style = { width: size, height: size };
     switch (shape) {
-      case "circle": return <Circle className={className} />;
-      case "triangle": return <Triangle className={className} />;
-      case "square": return <Square className={className} />;
-      case "hexagon": return <Hexagon className={className} />;
-      case "star": return <Star className={className} />;
+      case "circle": return <Circle className={className} style={style} />;
+      case "triangle": return <Triangle className={className} style={style} />;
+      case "square": return <Square className={className} style={style} />;
+      case "hexagon": return <Hexagon className={className} style={style} />;
+      case "star": return <Star className={className} style={style} />;
     }
   };
   
@@ -115,8 +116,8 @@ function BackgroundEffects() {
         >
           <ShapeIcon 
             shape={shape.shape} 
-            className={`drop-shadow-lg`}
-            style={{ width: shape.size, height: shape.size } as any}
+            className="drop-shadow-lg"
+            size={shape.size}
           />
         </motion.div>
       ))}
