@@ -60,7 +60,7 @@ export class MemStorage implements IStorage {
 
     defaultApps.forEach((app) => {
       const id = randomUUID();
-      this.apps.set(id, { ...app, id });
+      this.apps.set(id, { ...app, id, order: app.order ?? 0 });
     });
   }
 
@@ -91,7 +91,7 @@ export class MemStorage implements IStorage {
 
   async createApp(insertApp: InsertApp): Promise<App> {
     const id = randomUUID();
-    const app: App = { ...insertApp, id };
+    const app: App = { ...insertApp, id, order: insertApp.order ?? 0 };
     this.apps.set(id, app);
     return app;
   }
