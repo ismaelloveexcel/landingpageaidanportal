@@ -301,7 +301,6 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             onClick={onAdminClick}
-            title="Click me..."
           >
             <DemogorgonScene />
           </motion.div>
