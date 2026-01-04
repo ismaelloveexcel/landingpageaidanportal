@@ -208,7 +208,7 @@ function PortalAnimation({ onComplete }: { onComplete: () => void }) {
 
 function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdminClick: () => void }) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-4">
       {/* Enhanced background with better overlay */}
       <div className="absolute inset-0 z-0">
         <img
@@ -222,7 +222,7 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
       </div>
       
       {/* Nail Bat - Background decorative element (bottom-right) */}
-      <div className="absolute bottom-8 right-4 md:bottom-16 md:right-8 w-32 h-32 md:w-48 md:h-48 lg:w-56 lg:h-56 z-5 opacity-60">
+      <div className="absolute bottom-4 right-0 md:bottom-8 md:right-4 w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 z-5 opacity-50 overflow-visible">
         <NailBatScene />
       </div>
       
@@ -291,15 +291,15 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
         
         {/* 3D Demogorgon Model - Clickable Easter Egg to Admin */}
         <motion.div
-          className="flex justify-center pt-6"
+          className="flex justify-center pt-4"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
           <motion.div 
-            className="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 cursor-pointer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
+            className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 cursor-pointer overflow-visible"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
             onClick={onAdminClick}
           >
             <DemogorgonScene />

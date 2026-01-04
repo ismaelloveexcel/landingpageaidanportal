@@ -34,9 +34,9 @@ function DemogorgonModel() {
   });
   
   return (
-    <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.3}>
+    <Float speed={1.5} rotationIntensity={0.15} floatIntensity={0.25}>
       <group ref={groupRef}>
-        <primitive object={scene} scale={1.8} position={[0, -0.3, 0]} />
+        <primitive object={scene} scale={1.4} position={[0, 0, 0]} />
       </group>
     </Float>
   );
@@ -67,9 +67,9 @@ function NailBatModel() {
   });
   
   return (
-    <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.4}>
+    <Float speed={1.2} rotationIntensity={0.15} floatIntensity={0.3}>
       <group ref={groupRef}>
-        <primitive object={scene} scale={2} position={[0, 0, 0]} rotation={[0.3, 0, 0.5]} />
+        <primitive object={scene} scale={1.5} position={[0, 0, 0]} rotation={[0.3, 0, 0.5]} />
       </group>
     </Float>
   );
@@ -77,17 +77,17 @@ function NailBatModel() {
 
 export function DemogorgonScene() {
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full overflow-visible">
       <Canvas
-        camera={{ position: [0, 0, 3.5], fov: 50 }}
-        style={{ background: "transparent" }}
-        gl={{ alpha: true, antialias: true }}
+        camera={{ position: [0, 0, 5], fov: 45 }}
+        style={{ background: "transparent", overflow: "visible" }}
+        gl={{ alpha: true, antialias: true, premultipliedAlpha: false }}
       >
-        <ambientLight intensity={0.6} />
-        <pointLight position={[5, 5, 5]} intensity={1.2} color="#a855f7" />
-        <pointLight position={[-5, -5, 5]} intensity={1} color="#06b6d4" />
-        <pointLight position={[0, 5, -5]} intensity={0.8} color="#22c55e" />
-        <pointLight position={[0, -3, 3]} intensity={0.5} color="#8b5cf6" />
+        <ambientLight intensity={0.7} />
+        <pointLight position={[5, 5, 5]} intensity={1.5} color="#a855f7" />
+        <pointLight position={[-5, -5, 5]} intensity={1.2} color="#06b6d4" />
+        <pointLight position={[0, 5, -5]} intensity={1} color="#22c55e" />
+        <pointLight position={[0, -3, 3]} intensity={0.6} color="#8b5cf6" />
         <Suspense fallback={null}>
           <DemogorgonModel />
         </Suspense>
@@ -98,16 +98,16 @@ export function DemogorgonScene() {
 
 export function NailBatScene() {
   return (
-    <div className="w-full h-full pointer-events-none">
+    <div className="w-full h-full pointer-events-none overflow-visible">
       <Canvas
-        camera={{ position: [0, 0, 3], fov: 45 }}
-        style={{ background: "transparent" }}
-        gl={{ alpha: true, antialias: true }}
+        camera={{ position: [0, 0, 4], fov: 45 }}
+        style={{ background: "transparent", overflow: "visible" }}
+        gl={{ alpha: true, antialias: true, premultipliedAlpha: false }}
       >
-        <ambientLight intensity={0.5} />
-        <pointLight position={[3, 3, 3]} intensity={1} color="#06b6d4" />
-        <pointLight position={[-3, -3, 3]} intensity={0.8} color="#a855f7" />
-        <pointLight position={[0, 3, -3]} intensity={0.6} color="#10b981" />
+        <ambientLight intensity={0.6} />
+        <pointLight position={[3, 3, 3]} intensity={1.2} color="#06b6d4" />
+        <pointLight position={[-3, -3, 3]} intensity={1} color="#a855f7" />
+        <pointLight position={[0, 3, -3]} intensity={0.8} color="#10b981" />
         <Suspense fallback={null}>
           <NailBatModel />
         </Suspense>
