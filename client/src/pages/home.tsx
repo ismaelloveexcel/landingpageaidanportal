@@ -273,10 +273,7 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
       
       
       
-      <div className="relative z-10 text-center max-w-4xl mx-auto flex flex-col items-center h-full py-6 md:py-10">
-        {/* Spacer to push content down from top */}
-        <div className="flex-1" />
-        
+      <div className="relative z-10 text-center max-w-4xl mx-auto flex flex-col items-center justify-center h-full">
         <motion.div
           initial={{ opacity: 0, y: 30, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -338,9 +335,6 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
             <ArrowRight className="w-5 h-5 ml-2" />
           </Button>
         </motion.div>
-        
-        {/* Spacer to push Demogorgon to bottom */}
-        <div className="flex-1" />
         
         {/* 3D Demogorgon Model - Clickable Easter Egg to Admin */}
         <motion.div
