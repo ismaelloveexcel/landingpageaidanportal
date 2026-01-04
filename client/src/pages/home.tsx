@@ -120,8 +120,30 @@ function BackgroundEffects() {
     }
   };
   
+  // Stranger Things style ember particles
+  const particles = Array.from({ length: 40 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    delay: Math.random() * 8,
+    duration: 6 + Math.random() * 6,
+    size: 2 + Math.random() * 4,
+  }));
+  
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+      {/* Stranger Things "001" background text */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <motion.span 
+          className="text-[20rem] md:text-[30rem] lg:text-[40rem] font-black text-white/[0.02] select-none"
+          style={{ fontFamily: "monospace" }}
+          animate={{ opacity: [0.02, 0.04, 0.02] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        >
+          001
+        </motion.span>
+      </div>
+      
+      {/* Floating geometric shapes */}
       {shapes.map((shape) => (
         <motion.div
           key={shape.id}
@@ -148,6 +170,34 @@ function BackgroundEffects() {
             size={shape.size}
           />
         </motion.div>
+      ))}
+      
+      {/* Stranger Things ember/ash particles */}
+      {particles.map((particle) => (
+        <motion.div
+          key={`particle-${particle.id}`}
+          className="absolute rounded-full"
+          style={{ 
+            left: `${particle.x}%`,
+            bottom: "-5%",
+            width: particle.size,
+            height: particle.size,
+            background: `radial-gradient(circle, rgba(239, 68, 68, 0.9) 0%, rgba(220, 38, 38, 0.6) 50%, transparent 100%)`,
+            boxShadow: `0 0 ${particle.size * 2}px rgba(239, 68, 68, 0.8), 0 0 ${particle.size * 4}px rgba(220, 38, 38, 0.4)`,
+          }}
+          animate={{
+            y: [0, -window.innerHeight * 1.2],
+            x: [0, (Math.random() - 0.5) * 100],
+            opacity: [0, 1, 1, 0],
+            scale: [0.5, 1, 0.8, 0],
+          }}
+          transition={{
+            duration: particle.duration,
+            delay: particle.delay,
+            repeat: Infinity,
+            ease: "easeOut",
+          }}
+        />
       ))}
       
       <div className="absolute inset-0 bg-gradient-to-b from-violet-900/20 via-transparent to-cyan-900/20" />
@@ -265,7 +315,7 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
           style={{
             textShadow: "0 2px 20px rgba(0,0,0,0.5)",
           }}
-        >🎮 A collection of (almost) awesome apps built just for you! 🚀</motion.p>
+        >A collection of awesome apps built just for you</motion.p>
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -287,13 +337,23 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
         
         {/* 3D Demogorgon Model - Clickable Easter Egg to Admin */}
         <motion.div
-          className="flex justify-center pt-4"
+          className="flex justify-center pt-4 relative"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
+          {/* Glow effect behind Demogorgon */}
           <motion.div 
-            className="w-80 h-80 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem] cursor-pointer overflow-visible"
+            className="absolute inset-0 flex items-center justify-center pointer-events-none"
+            animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.7, 0.4] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <div className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full bg-gradient-radial from-violet-500/30 via-purple-600/20 to-transparent blur-2xl" 
+              style={{ background: "radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, rgba(147, 51, 234, 0.2) 40%, transparent 70%)" }}
+            />
+          </motion.div>
+          <motion.div 
+            className="w-80 h-80 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem] cursor-pointer overflow-visible relative z-10"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             onClick={onAdminClick}
