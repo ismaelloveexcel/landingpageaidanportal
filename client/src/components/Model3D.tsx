@@ -1,8 +1,27 @@
 import { Canvas } from "@react-three/fiber";
 import { useGLTF, Float } from "@react-three/drei";
-import { Suspense, useRef } from "react";
+import { Suspense, useRef, Component, ReactNode } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
+
+// Error boundary to gracefully handle WebGL failures
+class WebGLErrorBoundary extends Component<{ children: ReactNode; fallback?: ReactNode }, { hasError: boolean }> {
+  constructor(props: { children: ReactNode; fallback?: ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback || null;
+    }
+    return this.props.children;
+  }
+}
 
 const demogorgonModel = "/attached_assets/Refine-this-Demogorgon-for-mobile-WebGL-keep-curre_1767555078706.glb";
 const nailBatModel = "/attached_assets/Meshy_AI_Nail_Bat_0104192416_texture_1767555084784.glb";
@@ -75,22 +94,24 @@ function NailBatModel() {
 
 export function DemogorgonScene() {
   return (
-    <div className="w-full h-full overflow-visible">
-      <Canvas
-        camera={{ position: [0, 0, 5], fov: 45 }}
-        style={{ background: "transparent", overflow: "visible" }}
-        gl={{ alpha: true, antialias: true, premultipliedAlpha: false }}
-      >
-        <ambientLight intensity={0.7} />
-        <pointLight position={[5, 5, 5]} intensity={1.5} color="#a855f7" />
-        <pointLight position={[-5, -5, 5]} intensity={1.2} color="#06b6d4" />
-        <pointLight position={[0, 5, -5]} intensity={1} color="#22c55e" />
-        <pointLight position={[0, -3, 3]} intensity={0.6} color="#8b5cf6" />
-        <Suspense fallback={null}>
-          <DemogorgonModel />
-        </Suspense>
-      </Canvas>
-    </div>
+    <WebGLErrorBoundary fallback={null}>
+      <div className="w-full h-full overflow-visible">
+        <Canvas
+          camera={{ position: [0, 0, 5], fov: 45 }}
+          style={{ background: "transparent", overflow: "visible" }}
+          gl={{ alpha: true, antialias: true, premultipliedAlpha: false }}
+        >
+          <ambientLight intensity={0.7} />
+          <pointLight position={[5, 5, 5]} intensity={1.5} color="#a855f7" />
+          <pointLight position={[-5, -5, 5]} intensity={1.2} color="#06b6d4" />
+          <pointLight position={[0, 5, -5]} intensity={1} color="#22c55e" />
+          <pointLight position={[0, -3, 3]} intensity={0.6} color="#8b5cf6" />
+          <Suspense fallback={null}>
+            <DemogorgonModel />
+          </Suspense>
+        </Canvas>
+      </div>
+    </WebGLErrorBoundary>
   );
 }
 

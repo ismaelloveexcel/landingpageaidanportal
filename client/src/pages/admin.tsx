@@ -45,6 +45,13 @@ function AdminLogin({ onLogin }: { onLogin: (key: string) => void }) {
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
+          <div className="flex items-center gap-2 mb-2">
+            <Link href="/">
+              <Button variant="ghost" size="icon" data-testid="button-login-back-home">
+                <ArrowLeft className="w-5 h-5" />
+              </Button>
+            </Link>
+          </div>
           <CardTitle className="flex items-center gap-2">
             <Lock className="w-5 h-5" />
             Admin Login
