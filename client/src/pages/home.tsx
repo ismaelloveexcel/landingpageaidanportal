@@ -220,15 +220,6 @@ function HeroSection({ onExplore }: { onExplore: () => void }) {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-violet-900/20 via-transparent to-transparent" />
       </div>
       
-      {/* 3D Model - Left Side (Demogorgon) */}
-      <div className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 lg:w-72 lg:h-72 z-20">
-        <DemogorgonScene />
-      </div>
-      
-      {/* 3D Model - Right Side (Nail Bat) */}
-      <div className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 lg:w-72 lg:h-72 z-20">
-        <NailBatScene />
-      </div>
       
       <div className="relative z-10 text-center max-w-4xl mx-auto space-y-8">
         <motion.div
@@ -292,9 +283,21 @@ function HeroSection({ onExplore }: { onExplore: () => void }) {
           </Button>
         </motion.div>
         
+        {/* 3D Demogorgon Model in center */}
+        <motion.div
+          className="flex justify-center pt-4"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
+          <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64">
+            <DemogorgonScene />
+          </div>
+        </motion.div>
+        
         {/* Enhanced floating shapes with more variety */}
         <motion.div
-          className="flex justify-center gap-6 pt-8"
+          className="flex justify-center gap-6 pt-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -304,7 +307,7 @@ function HeroSection({ onExplore }: { onExplore: () => void }) {
             { shape: "circle", color: "text-cyan-400", size: "w-7 h-7" },
             { shape: "triangle", color: "text-violet-400", size: "w-8 h-8" },
             { shape: "hexagon", color: "text-emerald-400", size: "w-7 h-7" },
-            { shape: "square", color: "text-pink-400", size: "w-8 h-8" },
+            { shape: "square", color: "text-indigo-400", size: "w-8 h-8" },
           ].map((item, i) => (
             <motion.div
               key={item.shape}
@@ -329,6 +332,18 @@ function HeroSection({ onExplore }: { onExplore: () => void }) {
               {item.shape === "star" && <Star className={item.size} fill="currentColor" />}
             </motion.div>
           ))}
+        </motion.div>
+        
+        {/* 3D Nail Bat Model below shapes */}
+        <motion.div
+          className="flex justify-center pt-2"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
+        >
+          <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48">
+            <NailBatScene />
+          </div>
         </motion.div>
       </div>
     </section>
