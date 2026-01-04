@@ -196,22 +196,17 @@ function HeroSection({ onExplore }: { onExplore: () => void }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 
-            className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight"
-            style={{
-              textShadow: `
-                0 0 20px hsl(var(--primary) / 0.5),
-                0 0 40px hsl(var(--primary) / 0.3),
-                0 4px 0 hsl(var(--primary) / 0.4),
-                0 8px 20px rgba(0,0,0,0.5)
-              `,
-            }}
-          >
-            <span className="bg-gradient-to-r from-cyan-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight">
+            <span 
+              className="block text-cyan-400"
+              style={{ textShadow: "0 2px 0 rgba(0,0,0,0.3)" }}
+            >
               Aidan's
             </span>
-            <br />
-            <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+            <span 
+              className="block text-violet-400"
+              style={{ textShadow: "0 2px 0 rgba(0,0,0,0.3)" }}
+            >
               App Portal
             </span>
           </h1>
