@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Gamepad2, 
@@ -205,7 +206,7 @@ function PortalAnimation({ onComplete }: { onComplete: () => void }) {
   );
 }
 
-function HeroSection({ onExplore }: { onExplore: () => void }) {
+function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdminClick: () => void }) {
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
       {/* Enhanced background with better overlay */}
@@ -218,6 +219,11 @@ function HeroSection({ onExplore }: { onExplore: () => void }) {
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/30 to-background" />
         {/* Additional radial glow effect */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-violet-900/20 via-transparent to-transparent" />
+      </div>
+      
+      {/* Nail Bat - Background decorative element (bottom-right) */}
+      <div className="absolute bottom-8 right-4 md:bottom-16 md:right-8 w-32 h-32 md:w-48 md:h-48 lg:w-56 lg:h-56 z-5 opacity-60">
+        <NailBatScene />
       </div>
       
       
@@ -283,16 +289,22 @@ function HeroSection({ onExplore }: { onExplore: () => void }) {
           </Button>
         </motion.div>
         
-        {/* 3D Demogorgon Model in center */}
+        {/* 3D Demogorgon Model - Clickable Easter Egg to Admin */}
         <motion.div
-          className="flex justify-center pt-4"
+          className="flex justify-center pt-6"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
-          <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64">
+          <motion.div 
+            className="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 cursor-pointer"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={onAdminClick}
+            title="Click me..."
+          >
             <DemogorgonScene />
-          </div>
+          </motion.div>
         </motion.div>
         
         {/* Enhanced floating shapes with more variety */}
@@ -334,17 +346,6 @@ function HeroSection({ onExplore }: { onExplore: () => void }) {
           ))}
         </motion.div>
         
-        {/* 3D Nail Bat Model below shapes */}
-        <motion.div
-          className="flex justify-center pt-2"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-        >
-          <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48">
-            <NailBatScene />
-          </div>
-        </motion.div>
       </div>
     </section>
   );
@@ -511,6 +512,7 @@ function AppsSection({ onBack }: { onBack: () => void }) {
 export default function Home() {
   const [showApps, setShowApps] = useState(false);
   const [showPortal, setShowPortal] = useState(false);
+  const [, setLocation] = useLocation();
   
   const handleExplore = () => {
     setShowPortal(true);
@@ -523,6 +525,10 @@ export default function Home() {
   
   const handleBack = () => {
     setShowApps(false);
+  };
+  
+  const handleAdminClick = () => {
+    setLocation("/admin");
   };
   
   return (
@@ -543,7 +549,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <HeroSection onExplore={handleExplore} />
+            <HeroSection onExplore={handleExplore} onAdminClick={handleAdminClick} />
           </motion.div>
         ) : (
           <motion.div
