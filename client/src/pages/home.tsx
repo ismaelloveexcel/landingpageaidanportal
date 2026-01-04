@@ -23,7 +23,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import type { App } from "@shared/schema";
 import heroImage from "@assets/generated_images/epic_neon_gaming_portal.png";
-import { DemogorgonScene, NailBatScene } from "@/components/Model3D";
+import { DemogorgonScene } from "@/components/Model3D";
 
 const iconMap: Record<string, typeof Rocket> = {
   rocket: Rocket,
@@ -221,10 +221,6 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-violet-900/20 via-transparent to-transparent" />
       </div>
       
-      {/* Nail Bat - Background decorative element (bottom-right) */}
-      <div className="absolute bottom-4 right-0 md:bottom-8 md:right-4 w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 z-5 opacity-50 overflow-visible">
-        <NailBatScene />
-      </div>
       
       
       <div className="relative z-10 text-center max-w-4xl mx-auto space-y-8">
