@@ -22,6 +22,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import type { App } from "@shared/schema";
 import heroImage from "@assets/generated_images/epic_neon_gaming_portal.png";
+import { DemogorgonScene, NailBatScene } from "@/components/Model3D";
 
 const iconMap: Record<string, typeof Rocket> = {
   rocket: Rocket,
@@ -218,6 +219,17 @@ function HeroSection({ onExplore }: { onExplore: () => void }) {
         {/* Additional radial glow effect */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-violet-900/20 via-transparent to-transparent" />
       </div>
+      
+      {/* 3D Model - Left Side (Demogorgon) */}
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 z-5 hidden md:block">
+        <DemogorgonScene />
+      </div>
+      
+      {/* 3D Model - Right Side (Nail Bat) */}
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 z-5 hidden md:block">
+        <NailBatScene />
+      </div>
+      
       <div className="relative z-10 text-center max-w-4xl mx-auto space-y-8">
         <motion.div
           initial={{ opacity: 0, y: 30, scale: 0.95 }}
