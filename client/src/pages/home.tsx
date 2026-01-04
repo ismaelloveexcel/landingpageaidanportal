@@ -340,17 +340,33 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          {/* Enhanced button with glow pulse */}
-          <Button
-            size="lg"
-            onClick={onExplore}
-            className="text-sm sm:text-base px-6 py-4 rounded-xl bg-gradient-to-r from-violet-500 via-purple-500 to-cyan-500 border-none animate-glow-pulse hover:scale-105 transition-transform duration-300 font-bold uppercase tracking-wide"
-            data-testid="button-explore-apps"
+          {/* Stranger Things themed button */}
+          <motion.div
+            animate={{ 
+              boxShadow: [
+                "0 0 20px rgba(239, 68, 68, 0.4), 0 0 40px rgba(239, 68, 68, 0.2)",
+                "0 0 30px rgba(239, 68, 68, 0.6), 0 0 60px rgba(239, 68, 68, 0.3)",
+                "0 0 20px rgba(239, 68, 68, 0.4), 0 0 40px rgba(239, 68, 68, 0.2)"
+              ]
+            }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="rounded-xl"
           >
-            <Gamepad2 className="w-6 h-6 mr-2" />
-            Explore Apps
-            <ArrowRight className="w-5 h-5 ml-2" />
-          </Button>
+            <Button
+              size="lg"
+              onClick={onExplore}
+              className="text-sm sm:text-base px-8 py-5 rounded-xl bg-red-600 hover:bg-red-700 border-2 border-red-500 hover:scale-105 transition-transform duration-300 font-bold uppercase tracking-widest"
+              style={{
+                fontFamily: "'Times New Roman', serif",
+                textShadow: "0 0 10px rgba(239, 68, 68, 0.8)",
+              }}
+              data-testid="button-explore-apps"
+            >
+              <Gamepad2 className="w-6 h-6 mr-2" />
+              Explore Apps
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Button>
+          </motion.div>
         </motion.div>
         
         {/* 3D Demogorgon Model - Clickable Easter Egg to Admin */}
