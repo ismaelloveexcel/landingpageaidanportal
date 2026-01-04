@@ -359,9 +359,7 @@ function AppsSection({ onBack }: { onBack: () => void }) {
                 textShadow: "0 0 20px hsl(var(--primary) / 0.3)",
               }}
             >Welcome doodle-tastic dusty</h2>
-            <p className="text-muted-foreground mt-1">
-              Choose an app to launch
-            </p>
+            <p className="text-muted-foreground mt-1">Choose what you want to do today</p>
           </div>
           <Button 
             variant="outline" 
