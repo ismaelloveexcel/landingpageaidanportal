@@ -273,7 +273,10 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
       
       
       
-      <div className="relative z-10 text-center max-w-4xl mx-auto space-y-2 md:space-y-4">
+      <div className="relative z-10 text-center max-w-4xl mx-auto flex flex-col items-center h-full py-6 md:py-10">
+        {/* Spacer to push content down from top */}
+        <div className="flex-1" />
+        
         <motion.div
           initial={{ opacity: 0, y: 30, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -308,7 +311,7 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
         </motion.div>
         
         <motion.p
-          className="text-sm sm:text-base md:text-lg text-foreground/80 max-w-2xl mx-auto font-normal"
+          className="text-sm sm:text-base md:text-lg text-foreground/80 max-w-2xl mx-auto font-normal mt-2 md:mt-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -318,6 +321,7 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
         >A collection of awesome apps built just for you</motion.p>
         
         <motion.div
+          className="mt-3 md:mt-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -335,25 +339,28 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
           </Button>
         </motion.div>
         
+        {/* Spacer to push Demogorgon to bottom */}
+        <div className="flex-1" />
+        
         {/* 3D Demogorgon Model - Clickable Easter Egg to Admin */}
         <motion.div
-          className="flex justify-center relative"
+          className="flex justify-center relative mb-4 md:mb-8"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
-          {/* Glow effect behind Demogorgon */}
+          {/* Glow effect behind Demogorgon - reduced blur for sharper look */}
           <motion.div 
             className="absolute inset-0 flex items-center justify-center pointer-events-none"
-            animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.7, 0.4] }}
+            animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           >
-            <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full blur-2xl" 
-              style={{ background: "radial-gradient(circle, rgba(139, 92, 246, 0.5) 0%, rgba(147, 51, 234, 0.3) 40%, transparent 70%)" }}
+            <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full blur-md" 
+              style={{ background: "radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, rgba(147, 51, 234, 0.2) 40%, transparent 70%)" }}
             />
           </motion.div>
           <motion.div 
-            className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 cursor-pointer overflow-visible relative z-10"
+            className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 cursor-pointer overflow-visible relative z-10"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             onClick={onAdminClick}
