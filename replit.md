@@ -61,6 +61,11 @@ Data models:
 - Apps managed via backend API at `/api/apps`
 - App cards show: Name, Description, Status badge, Launch/Coming Soon button
 
+### Admin Page
+- Access at `/admin` to manage apps
+- Default admin password: `aidan-portal-2024` (can be changed via ADMIN_KEY env variable)
+- Add, edit, delete apps with title, description, URL, status, icon, and color
+
 ### Visual Updates
 - 30 floating geometric shapes (circles, triangles, squares, hexagons, stars) as animated background
 - Brighter glow effects and visible particles
