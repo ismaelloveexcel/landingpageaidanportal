@@ -221,12 +221,12 @@ function HeroSection({ onExplore }: { onExplore: () => void }) {
       </div>
       
       {/* 3D Model - Left Side (Demogorgon) */}
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 z-5 hidden md:block">
+      <div className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 lg:w-72 lg:h-72 z-20">
         <DemogorgonScene />
       </div>
       
       {/* 3D Model - Right Side (Nail Bat) */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 z-5 hidden md:block">
+      <div className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 lg:w-72 lg:h-72 z-20">
         <NailBatScene />
       </div>
       
