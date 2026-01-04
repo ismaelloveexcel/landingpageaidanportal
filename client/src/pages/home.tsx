@@ -15,10 +15,7 @@ import {
   Square,
   Hexagon,
   Star,
-  Trophy,
-  Clock,
-  MapPin,
-  Heart
+  Clock
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -375,7 +372,7 @@ function AppCard({ app, index }: { app: App; index: number }) {
                 : "uppercase text-xs"
               }
             >
-              {app.status === "active" ? "🟢 Active" : "⏳ Coming Soon"}
+              {app.status === "active" ? "Active" : "Coming Soon"}
             </Badge>
           </div>
           
@@ -412,99 +409,6 @@ function AppCard({ app, index }: { app: App; index: number }) {
   );
 }
 
-function StatsSection({ appCount }: { appCount: number }) {
-  const stats = [
-    { icon: Trophy, label: "Total Apps", value: appCount.toString(), ariaLabel: `${appCount} Total Apps`, color: "text-yellow-400", bgColor: "from-yellow-500/20 to-orange-500/20" },
-    { icon: Clock, label: "Hours of Fun", value: "∞", ariaLabel: "Unlimited Hours of Fun", color: "text-cyan-400", bgColor: "from-cyan-500/20 to-blue-500/20" },
-    { icon: MapPin, label: "Adventures Awaiting", value: "100+", ariaLabel: "Over 100 Adventures Awaiting", color: "text-emerald-400", bgColor: "from-emerald-500/20 to-green-500/20" },
-  ];
-  
-  return (
-    <motion.div 
-      className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16"
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.3 }}
-    >
-      {stats.map((stat, index) => (
-        <motion.div
-          key={stat.label}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-          whileHover={{ scale: 1.05, y: -5 }}
-          className={`relative p-6 rounded-2xl bg-gradient-to-br ${stat.bgColor} border-2 border-white/10 backdrop-blur-sm text-center`}
-          aria-label={stat.ariaLabel}
-        >
-          <motion.div 
-            className={`mx-auto w-16 h-16 rounded-full bg-card/50 flex items-center justify-center mb-4 ${stat.color}`}
-            animate={{ rotate: [0, 5, -5, 0] }}
-            transition={{ duration: 4, repeat: Infinity, delay: index * 0.5 }}
-          >
-            <stat.icon className="w-8 h-8" aria-hidden="true" />
-          </motion.div>
-          <div className={`text-4xl font-black ${stat.color} mb-2`} style={{ textShadow: `0 0 20px currentColor` }} aria-hidden="true">
-            {stat.value}
-          </div>
-          <div className="text-sm text-muted-foreground uppercase tracking-wider font-bold">
-            {stat.label}
-          </div>
-        </motion.div>
-      ))}
-    </motion.div>
-  );
-}
-
-function Footer({ onBack }: { onBack: () => void }) {
-  return (
-    <motion.footer 
-      className="mt-20 pb-12 text-center relative z-10"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6, delay: 0.5 }}
-    >
-      <div className="max-w-4xl mx-auto space-y-6">
-        {/* Divider with glow */}
-        <div className="h-px bg-gradient-to-r from-transparent via-violet-500/50 to-transparent mb-8" />
-        
-        {/* Made with love message */}
-        <motion.p 
-          className="text-xl font-medium text-muted-foreground"
-          animate={{ scale: [1, 1.02, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          Made with <Heart className="inline w-5 h-5 text-red-500 fill-red-500 mx-1" /> for Aidan
-        </motion.p>
-        
-        {/* Back to top button */}
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={onBack}
-          className="text-muted-foreground hover:text-foreground transition-colors"
-        >
-          <ArrowUp className="w-4 h-4 mr-2" />
-          Back to Portal
-        </Button>
-        
-        {/* Floating emoji decorations */}
-        <div className="flex justify-center gap-4 pt-4">
-          {["🎮", "🚀", "⭐", "🎯", "🏆"].map((emoji, i) => (
-            <motion.span
-              key={i}
-              className="text-2xl"
-              animate={{ y: [0, -8, 0], rotate: [0, 10, -10, 0] }}
-              transition={{ duration: 2, delay: i * 0.2, repeat: Infinity }}
-            >
-              {emoji}
-            </motion.span>
-          ))}
-        </div>
-      </div>
-    </motion.footer>
-  );
-}
-
 function AppsSection({ onBack }: { onBack: () => void }) {
   const { data: apps, isLoading } = useQuery<App[]>({
     queryKey: ["/api/apps"],
@@ -520,13 +424,8 @@ function AppsSection({ onBack }: { onBack: () => void }) {
           className="flex items-center justify-between flex-wrap gap-4"
         >
           <div>
-            <h2 
-              className="text-3xl md:text-4xl font-black uppercase tracking-tight gaming-text-gradient"
-              style={{
-                textShadow: "0 0 30px hsl(var(--primary) / 0.3)",
-              }}
-            >
-              🎮 Welcome Aidan! 🎮
+            <h2 className="text-3xl md:text-4xl font-bold text-cyan-400">
+              Welcome Aidan!
             </h2>
             <p className="text-lg text-muted-foreground mt-2 font-medium">Choose your next adventure</p>
           </div>
@@ -580,14 +479,6 @@ function AppsSection({ onBack }: { onBack: () => void }) {
             </p>
           </motion.div>
         )}
-        
-        {/* Stats Section */}
-        {!isLoading && apps && apps.length > 0 && (
-          <StatsSection appCount={apps.length} />
-        )}
-        
-        {/* Footer */}
-        <Footer onBack={onBack} />
       </div>
     </section>
   );
