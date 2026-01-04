@@ -28,6 +28,7 @@ export class MemStorage implements IStorage {
         title: "Adventure Quest",
         description: "An epic RPG adventure with monsters, treasures, and legendary quests awaiting brave heroes!",
         url: "https://example.com/adventure-quest",
+        status: "active",
         iconName: "sword",
         colorClass: "purple",
         order: 1,
@@ -36,6 +37,7 @@ export class MemStorage implements IStorage {
         title: "Space Blaster",
         description: "Defend the galaxy from alien invaders in this action-packed space shooter game!",
         url: "https://example.com/space-blaster",
+        status: "active",
         iconName: "rocket",
         colorClass: "cyan",
         order: 2,
@@ -44,6 +46,7 @@ export class MemStorage implements IStorage {
         title: "Puzzle Master",
         description: "Challenge your brain with mind-bending puzzles and unlock new levels of genius!",
         url: "https://example.com/puzzle-master",
+        status: "coming soon",
         iconName: "sparkles",
         colorClass: "green",
         order: 3,
@@ -52,6 +55,7 @@ export class MemStorage implements IStorage {
         title: "Racing Thunder",
         description: "Race at lightning speed through amazing tracks and become the ultimate champion!",
         url: "https://example.com/racing-thunder",
+        status: "active",
         iconName: "zap",
         colorClass: "orange",
         order: 4,
@@ -60,7 +64,7 @@ export class MemStorage implements IStorage {
 
     defaultApps.forEach((app) => {
       const id = randomUUID();
-      this.apps.set(id, { ...app, id, order: app.order ?? 0 });
+      this.apps.set(id, { ...app, id, order: app.order ?? 0, status: app.status ?? "active" });
     });
   }
 
@@ -91,7 +95,7 @@ export class MemStorage implements IStorage {
 
   async createApp(insertApp: InsertApp): Promise<App> {
     const id = randomUUID();
-    const app: App = { ...insertApp, id, order: insertApp.order ?? 0 };
+    const app: App = { ...insertApp, id, order: insertApp.order ?? 0, status: insertApp.status ?? "active" };
     this.apps.set(id, app);
     return app;
   }

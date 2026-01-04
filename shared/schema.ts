@@ -22,6 +22,7 @@ export const apps = pgTable("apps", {
   title: text("title").notNull(),
   description: text("description").notNull(),
   url: text("url").notNull(),
+  status: text("status").notNull().default("active"),
   iconName: text("icon_name").notNull(),
   colorClass: text("color_class").notNull(),
   order: integer("order").notNull().default(0),
