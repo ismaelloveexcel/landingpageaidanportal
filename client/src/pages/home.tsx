@@ -279,22 +279,21 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {/* Stranger Things style title */}
+          {/* Stranger Things style title - sharp and crisp */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-widest">
             <motion.span 
               className="block text-red-500"
               style={{ 
                 fontFamily: "'Times New Roman', serif",
                 letterSpacing: "0.15em",
-                textShadow: "0 0 10px rgba(239, 68, 68, 0.8), 0 0 20px rgba(239, 68, 68, 0.6), 0 0 40px rgba(239, 68, 68, 0.4), 0 0 80px rgba(239, 68, 68, 0.3)",
-                filter: "drop-shadow(0 0 30px rgba(239, 68, 68, 0.5))"
+                textShadow: "0 0 8px rgba(239, 68, 68, 0.9), 0 0 20px rgba(239, 68, 68, 0.5)"
               }}
               animate={{ 
-                opacity: [1, 0.85, 1],
+                opacity: [1, 0.9, 1],
                 textShadow: [
-                  "0 0 10px rgba(239, 68, 68, 0.8), 0 0 20px rgba(239, 68, 68, 0.6), 0 0 40px rgba(239, 68, 68, 0.4), 0 0 80px rgba(239, 68, 68, 0.3)",
-                  "0 0 15px rgba(239, 68, 68, 1), 0 0 30px rgba(239, 68, 68, 0.8), 0 0 60px rgba(239, 68, 68, 0.5), 0 0 100px rgba(239, 68, 68, 0.4)",
-                  "0 0 10px rgba(239, 68, 68, 0.8), 0 0 20px rgba(239, 68, 68, 0.6), 0 0 40px rgba(239, 68, 68, 0.4), 0 0 80px rgba(239, 68, 68, 0.3)"
+                  "0 0 8px rgba(239, 68, 68, 0.9), 0 0 20px rgba(239, 68, 68, 0.5)",
+                  "0 0 12px rgba(239, 68, 68, 1), 0 0 30px rgba(239, 68, 68, 0.6)",
+                  "0 0 8px rgba(239, 68, 68, 0.9), 0 0 20px rgba(239, 68, 68, 0.5)"
                 ]
               }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -306,15 +305,14 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
               style={{ 
                 fontFamily: "'Times New Roman', serif",
                 letterSpacing: "0.15em",
-                textShadow: "0 0 10px rgba(239, 68, 68, 0.8), 0 0 20px rgba(239, 68, 68, 0.6), 0 0 40px rgba(239, 68, 68, 0.4), 0 0 80px rgba(239, 68, 68, 0.3)",
-                filter: "drop-shadow(0 0 30px rgba(239, 68, 68, 0.5))"
+                textShadow: "0 0 8px rgba(239, 68, 68, 0.9), 0 0 20px rgba(239, 68, 68, 0.5)"
               }}
               animate={{ 
-                opacity: [1, 0.85, 1],
+                opacity: [1, 0.9, 1],
                 textShadow: [
-                  "0 0 10px rgba(239, 68, 68, 0.8), 0 0 20px rgba(239, 68, 68, 0.6), 0 0 40px rgba(239, 68, 68, 0.4), 0 0 80px rgba(239, 68, 68, 0.3)",
-                  "0 0 15px rgba(239, 68, 68, 1), 0 0 30px rgba(239, 68, 68, 0.8), 0 0 60px rgba(239, 68, 68, 0.5), 0 0 100px rgba(239, 68, 68, 0.4)",
-                  "0 0 10px rgba(239, 68, 68, 0.8), 0 0 20px rgba(239, 68, 68, 0.6), 0 0 40px rgba(239, 68, 68, 0.4), 0 0 80px rgba(239, 68, 68, 0.3)"
+                  "0 0 8px rgba(239, 68, 68, 0.9), 0 0 20px rgba(239, 68, 68, 0.5)",
+                  "0 0 12px rgba(239, 68, 68, 1), 0 0 30px rgba(239, 68, 68, 0.6)",
+                  "0 0 8px rgba(239, 68, 68, 0.9), 0 0 20px rgba(239, 68, 68, 0.5)"
                 ]
               }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
