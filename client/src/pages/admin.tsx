@@ -47,8 +47,9 @@ function AdminLogin({ onLogin }: { onLogin: (key: string) => void }) {
         <CardHeader>
           <div className="flex items-center gap-2 mb-2">
             <Link href="/">
-              <Button variant="ghost" size="icon" data-testid="button-login-back-home">
-                <ArrowLeft className="w-5 h-5" />
+              <Button variant="ghost" data-testid="button-login-back-home">
+                <ArrowLeft className="w-5 h-5 mr-2" />
+                Home
               </Button>
             </Link>
           </div>
@@ -347,8 +348,9 @@ function AdminDashboard({ adminKey }: { adminKey: string }) {
         <div className="flex items-center justify-between flex-wrap gap-4">
           <div className="flex items-center gap-4">
             <Link href="/">
-              <Button variant="ghost" size="icon" data-testid="button-back-home">
-                <ArrowLeft className="w-5 h-5" />
+              <Button variant="ghost" data-testid="button-back-home">
+                <ArrowLeft className="w-5 h-5 mr-2" />
+                Home
               </Button>
             </Link>
             <h1 className="text-2xl font-bold text-cyan-400">Admin Dashboard</h1>

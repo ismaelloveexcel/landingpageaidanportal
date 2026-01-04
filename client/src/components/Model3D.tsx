@@ -92,9 +92,24 @@ function NailBatModel() {
   );
 }
 
+// Static fallback for when WebGL is unavailable
+function DemogorgonFallback() {
+  return (
+    <div className="w-full h-full flex items-center justify-center">
+      <div 
+        className="w-32 h-32 md:w-48 md:h-48 rounded-full animate-pulse"
+        style={{
+          background: "radial-gradient(ellipse at center, rgba(139, 92, 246, 0.6) 0%, rgba(147, 51, 234, 0.3) 50%, transparent 70%)",
+          boxShadow: "0 0 60px rgba(139, 92, 246, 0.5), 0 0 120px rgba(147, 51, 234, 0.3)"
+        }}
+      />
+    </div>
+  );
+}
+
 export function DemogorgonScene() {
   return (
-    <WebGLErrorBoundary fallback={null}>
+    <WebGLErrorBoundary fallback={<DemogorgonFallback />}>
       <div className="w-full h-full overflow-visible">
         <Canvas
           camera={{ position: [0, 0, 5], fov: 45 }}

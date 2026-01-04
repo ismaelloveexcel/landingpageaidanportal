@@ -308,7 +308,7 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
         </motion.div>
         
         <motion.p
-          className="text-sm sm:text-base md:text-lg text-foreground/80 max-w-2xl mx-auto font-normal mt-2 md:mt-4"
+          className="text-sm sm:text-base md:text-lg text-foreground/80 max-w-2xl mx-auto font-normal mt-4 md:mt-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -318,7 +318,7 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
         >A collection of awesome apps built just for you</motion.p>
         
         <motion.div
-          className="mt-3 md:mt-6"
+          className="mt-6 md:mt-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
