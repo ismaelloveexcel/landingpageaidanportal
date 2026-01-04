@@ -131,13 +131,13 @@ function BackgroundEffects() {
   
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-      {/* Stranger Things "001" background text */}
-      <div className="absolute inset-0 flex items-center justify-center">
+      {/* Stranger Things / Squid Game "001" background text */}
+      <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
         <motion.span 
-          className="text-[20rem] md:text-[30rem] lg:text-[40rem] font-black text-white/[0.02] select-none"
-          style={{ fontFamily: "monospace" }}
-          animate={{ opacity: [0.02, 0.04, 0.02] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="text-[25rem] md:text-[35rem] lg:text-[45rem] font-black text-red-500/10 select-none"
+          style={{ fontFamily: "monospace", textShadow: "0 0 100px rgba(239, 68, 68, 0.3)" }}
+          animate={{ opacity: [0.08, 0.15, 0.08] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         >
           001
         </motion.span>
@@ -273,14 +273,14 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
       
       
       
-      <div className="relative z-10 text-center max-w-4xl mx-auto space-y-8">
+      <div className="relative z-10 text-center max-w-4xl mx-auto space-y-4">
         <motion.div
           initial={{ opacity: 0, y: 30, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           {/* Enhanced title with animated gradient */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight">
             <motion.span 
               className="block gaming-text-gradient"
               style={{ 
@@ -308,7 +308,7 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
         </motion.div>
         
         <motion.p
-          className="text-xl md:text-2xl text-foreground/80 max-w-2xl mx-auto font-normal"
+          className="text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto font-normal"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -326,18 +326,18 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
           <Button
             size="lg"
             onClick={onExplore}
-            className="text-xl px-10 py-7 rounded-2xl bg-gradient-to-r from-violet-500 via-purple-500 to-cyan-500 border-none animate-glow-pulse hover:scale-105 transition-transform duration-300 font-bold uppercase tracking-wide"
+            className="text-lg px-8 py-5 rounded-xl bg-gradient-to-r from-violet-500 via-purple-500 to-cyan-500 border-none animate-glow-pulse hover:scale-105 transition-transform duration-300 font-bold uppercase tracking-wide"
             data-testid="button-explore-apps"
           >
-            <Gamepad2 className="w-7 h-7 mr-3" />
+            <Gamepad2 className="w-6 h-6 mr-2" />
             Explore Apps
-            <ArrowRight className="w-6 h-6 ml-3" />
+            <ArrowRight className="w-5 h-5 ml-2" />
           </Button>
         </motion.div>
         
         {/* 3D Demogorgon Model - Clickable Easter Egg to Admin */}
         <motion.div
-          className="flex justify-center pt-4 relative"
+          className="flex justify-center relative"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
@@ -348,57 +348,18 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
             animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.7, 0.4] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           >
-            <div className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full bg-gradient-radial from-violet-500/30 via-purple-600/20 to-transparent blur-2xl" 
-              style={{ background: "radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, rgba(147, 51, 234, 0.2) 40%, transparent 70%)" }}
+            <div className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full blur-2xl" 
+              style={{ background: "radial-gradient(circle, rgba(139, 92, 246, 0.5) 0%, rgba(147, 51, 234, 0.3) 40%, transparent 70%)" }}
             />
           </motion.div>
           <motion.div 
-            className="w-80 h-80 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem] cursor-pointer overflow-visible relative z-10"
+            className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 cursor-pointer overflow-visible relative z-10"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             onClick={onAdminClick}
           >
             <DemogorgonScene />
           </motion.div>
-        </motion.div>
-        
-        {/* Enhanced floating shapes with more variety */}
-        <motion.div
-          className="flex justify-center gap-6 pt-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          {[
-            { shape: "star", color: "text-yellow-400", size: "w-8 h-8" },
-            { shape: "circle", color: "text-cyan-400", size: "w-7 h-7" },
-            { shape: "triangle", color: "text-violet-400", size: "w-8 h-8" },
-            { shape: "hexagon", color: "text-emerald-400", size: "w-7 h-7" },
-            { shape: "square", color: "text-indigo-400", size: "w-8 h-8" },
-          ].map((item, i) => (
-            <motion.div
-              key={item.shape}
-              animate={{ 
-                y: [0, -15, 0],
-                rotate: [0, 15, -15, 0],
-                scale: [1, 1.1, 1],
-              }}
-              transition={{ 
-                duration: 2.5, 
-                delay: i * 0.15, 
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className={`${item.color} drop-shadow-lg`}
-              style={{ filter: `drop-shadow(0 0 8px currentColor)` }}
-            >
-              {item.shape === "circle" && <Circle className={item.size} />}
-              {item.shape === "triangle" && <Triangle className={item.size} />}
-              {item.shape === "square" && <Square className={item.size} />}
-              {item.shape === "hexagon" && <Hexagon className={item.size} />}
-              {item.shape === "star" && <Star className={item.size} fill="currentColor" />}
-            </motion.div>
-          ))}
         </motion.div>
         
       </div>
