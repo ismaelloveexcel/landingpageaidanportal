@@ -66,6 +66,14 @@ const hoverGlowMap: Record<string, string> = {
   blue: "hover:shadow-blue-400/40 hover:shadow-2xl",
 };
 
+const colorShadowMap: Record<string, string> = {
+  purple: "rgba(139, 92, 246, 0.4)",
+  cyan: "rgba(34, 211, 238, 0.4)",
+  green: "rgba(52, 211, 153, 0.4)",
+  orange: "rgba(251, 146, 60, 0.4)",
+  blue: "rgba(96, 165, 250, 0.4)",
+};
+
 interface FloatingShape {
   id: number;
   x: number;
@@ -356,7 +364,7 @@ function AppCard({ app, index }: { app: App; index: number }) {
               className={`p-4 rounded-2xl bg-gradient-to-br ${gradientClass} shadow-lg`}
               whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
               transition={{ duration: 0.3 }}
-              style={{ boxShadow: isActive ? `0 8px 25px ${app.colorClass === 'purple' ? 'rgba(139, 92, 246, 0.4)' : app.colorClass === 'cyan' ? 'rgba(34, 211, 238, 0.4)' : app.colorClass === 'green' ? 'rgba(52, 211, 153, 0.4)' : app.colorClass === 'orange' ? 'rgba(251, 146, 60, 0.4)' : 'rgba(96, 165, 250, 0.4)'}` : undefined }}
+              style={{ boxShadow: isActive ? `0 8px 25px ${colorShadowMap[app.colorClass] || colorShadowMap.purple}` : undefined }}
             >
               <Icon className="w-8 h-8 text-white drop-shadow-md" />
             </motion.div>
@@ -406,9 +414,9 @@ function AppCard({ app, index }: { app: App; index: number }) {
 
 function StatsSection({ appCount }: { appCount: number }) {
   const stats = [
-    { icon: Trophy, label: "Total Apps", value: appCount.toString(), color: "text-yellow-400", bgColor: "from-yellow-500/20 to-orange-500/20" },
-    { icon: Clock, label: "Hours of Fun", value: "∞", color: "text-cyan-400", bgColor: "from-cyan-500/20 to-blue-500/20" },
-    { icon: MapPin, label: "Adventures Awaiting", value: "100+", color: "text-emerald-400", bgColor: "from-emerald-500/20 to-green-500/20" },
+    { icon: Trophy, label: "Total Apps", value: appCount.toString(), ariaLabel: `${appCount} Total Apps`, color: "text-yellow-400", bgColor: "from-yellow-500/20 to-orange-500/20" },
+    { icon: Clock, label: "Hours of Fun", value: "∞", ariaLabel: "Unlimited Hours of Fun", color: "text-cyan-400", bgColor: "from-cyan-500/20 to-blue-500/20" },
+    { icon: MapPin, label: "Adventures Awaiting", value: "100+", ariaLabel: "Over 100 Adventures Awaiting", color: "text-emerald-400", bgColor: "from-emerald-500/20 to-green-500/20" },
   ];
   
   return (
@@ -426,15 +434,16 @@ function StatsSection({ appCount }: { appCount: number }) {
           transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
           whileHover={{ scale: 1.05, y: -5 }}
           className={`relative p-6 rounded-2xl bg-gradient-to-br ${stat.bgColor} border-2 border-white/10 backdrop-blur-sm text-center`}
+          aria-label={stat.ariaLabel}
         >
           <motion.div 
             className={`mx-auto w-16 h-16 rounded-full bg-card/50 flex items-center justify-center mb-4 ${stat.color}`}
             animate={{ rotate: [0, 5, -5, 0] }}
             transition={{ duration: 4, repeat: Infinity, delay: index * 0.5 }}
           >
-            <stat.icon className="w-8 h-8" />
+            <stat.icon className="w-8 h-8" aria-hidden="true" />
           </motion.div>
-          <div className={`text-4xl font-black ${stat.color} mb-2`} style={{ textShadow: `0 0 20px currentColor` }}>
+          <div className={`text-4xl font-black ${stat.color} mb-2`} style={{ textShadow: `0 0 20px currentColor` }} aria-hidden="true">
             {stat.value}
           </div>
           <div className="text-sm text-muted-foreground uppercase tracking-wider font-bold">
