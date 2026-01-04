@@ -47,7 +47,24 @@ The server structure:
 
 Data models:
 - `users` - Basic user authentication (id, username, password)
-- `apps` - App entries with title, description, URL, icon, color, and display order
+- `apps` - App entries with title, description, URL, status, icon, color, and display order
+
+## Recent Changes (Jan 2026)
+
+### Simplified Architecture
+- Reduced to two-section flow: Hero landing page → Apps grid
+- Removed: Stats section, Secret section, complex footer
+- Added portal transition animation when clicking "Explore Apps"
+
+### App Schema Update
+- Added `status` field to apps (values: "active", "coming soon", etc.)
+- Apps managed via backend API at `/api/apps`
+- App cards show: Name, Description, Status badge, Launch/Coming Soon button
+
+### Visual Updates
+- 30 floating geometric shapes (circles, triangles, squares, hexagons, stars) as animated background
+- Brighter glow effects and visible particles
+- Boyish color palette: violet, indigo, blue, cyan, green (no pink)
 
 ### Design System
 - **Typography**: Fredoka (primary gaming font), Inter (secondary), Oxanium (monospace)
