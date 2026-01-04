@@ -6,7 +6,7 @@ import { insertAppSchema } from "@shared/schema";
 const ADMIN_KEY = process.env.ADMIN_KEY || "aidan-portal-2024";
 
 function requireAdmin(req: Request, res: Response, next: NextFunction) {
-  const adminKey = req.headers["x-admin-key"];
+  const adminKey = String(req.headers["x-admin-key"] || "");
   if (adminKey !== ADMIN_KEY) {
     return res.status(401).json({ error: "Unauthorized" });
   }
@@ -53,7 +53,12 @@ export async function registerRoutes(
 
   app.patch("/api/apps/:id", requireAdmin, async (req, res) => {
     try {
-      const updated = await storage.updateApp(req.params.id, req.body);
+      const partialSchema = insertAppSchema.partial();
+      const parsed = partialSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({ error: "Invalid app data", details: parsed.error.errors });
+      }
+      const updated = await storage.updateApp(req.params.id, parsed.data);
       if (!updated) {
         return res.status(404).json({ error: "App not found" });
       }
