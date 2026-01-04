@@ -286,3 +286,100 @@
     inset: -1px;
   }
 }
+
+/* Gaming Portal Custom Animations */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.4), 0 0 40px rgba(34, 211, 238, 0.2);
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.6), 0 0 60px rgba(34, 211, 238, 0.4);
+  }
+}
+
+@keyframes text-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes float-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes card-glow {
+  0%, 100% { 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+  50% { 
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.3);
+  }
+}
+
+.animate-gradient-shift {
+  animation: gradient-shift 3s ease infinite;
+  background-size: 200% 200%;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.animate-text-shimmer {
+  background-size: 200% auto;
+  animation: text-shimmer 3s linear infinite;
+}
+
+.animate-float-bounce {
+  animation: float-bounce 3s ease-in-out infinite;
+}
+
+.animate-card-glow {
+  animation: card-glow 3s ease-in-out infinite;
+}
+
+/* Gaming text gradient effect */
+.gaming-text-gradient {
+  background: linear-gradient(
+    90deg,
+    #22d3ee 0%,
+    #a78bfa 25%,
+    #22d3ee 50%,
+    #a78bfa 75%,
+    #22d3ee 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shimmer 4s linear infinite;
+}
+
+/* Enhanced card border with gradient */
+.gaming-card-border {
+  position: relative;
+  border: none !important;
+}
+
+.gaming-card-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 3px;
+  background: linear-gradient(135deg, #8b5cf6, #22d3ee, #10b981);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}

@@ -8,12 +8,17 @@ import {
   Sparkles, 
   Zap, 
   ArrowRight,
+  ArrowUp,
   ExternalLink,
   Circle,
   Triangle,
   Square,
   Hexagon,
-  Star
+  Star,
+  Trophy,
+  Clock,
+  MapPin,
+  Heart
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -43,6 +48,22 @@ const glowMap: Record<string, string> = {
   green: "shadow-emerald-400/50",
   orange: "shadow-orange-400/50",
   blue: "shadow-blue-400/50",
+};
+
+const borderColorMap: Record<string, string> = {
+  purple: "border-violet-500/60",
+  cyan: "border-cyan-400/60",
+  green: "border-emerald-400/60",
+  orange: "border-orange-400/60",
+  blue: "border-blue-400/60",
+};
+
+const hoverGlowMap: Record<string, string> = {
+  purple: "hover:shadow-violet-500/40 hover:shadow-2xl",
+  cyan: "hover:shadow-cyan-400/40 hover:shadow-2xl",
+  green: "hover:shadow-emerald-400/40 hover:shadow-2xl",
+  orange: "hover:shadow-orange-400/40 hover:shadow-2xl",
+  blue: "hover:shadow-blue-400/40 hover:shadow-2xl",
 };
 
 interface FloatingShape {
@@ -181,47 +202,62 @@ function PortalAnimation({ onComplete }: { onComplete: () => void }) {
 function HeroSection({ onExplore }: { onExplore: () => void }) {
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
+      {/* Enhanced background with better overlay */}
       <div className="absolute inset-0 z-0">
         <img
           src={heroImage}
           alt="Gaming Portal"
-          className="w-full h-full object-cover opacity-40"
+          className="w-full h-full object-cover opacity-50"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/30 to-background" />
+        {/* Additional radial glow effect */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-violet-900/20 via-transparent to-transparent" />
       </div>
       
       <div className="relative z-10 text-center max-w-4xl mx-auto space-y-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, y: 30, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
+          {/* Enhanced title with animated gradient */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight">
-            <span 
-              className="block text-cyan-400"
-              style={{ textShadow: "0 2px 0 rgba(0,0,0,0.3)" }}
+            <motion.span 
+              className="block gaming-text-gradient"
+              style={{ 
+                textShadow: "0 4px 30px rgba(34, 211, 238, 0.3)",
+                filter: "drop-shadow(0 0 20px rgba(34, 211, 238, 0.2))"
+              }}
+              animate={{ scale: [1, 1.02, 1] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
               Aidan's
-            </span>
-            <span 
-              className="block text-violet-400"
-              style={{ textShadow: "0 2px 0 rgba(0,0,0,0.3)" }}
+            </motion.span>
+            <motion.span 
+              className="block bg-gradient-to-r from-violet-400 via-purple-400 to-violet-400 bg-clip-text text-transparent animate-gradient-shift"
+              style={{ 
+                textShadow: "0 4px 30px rgba(139, 92, 246, 0.3)",
+                filter: "drop-shadow(0 0 20px rgba(139, 92, 246, 0.2))",
+                backgroundSize: "200% auto"
+              }}
+              animate={{ scale: [1, 1.02, 1] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
             >
               App Portal
-            </span>
+            </motion.span>
           </h1>
         </motion.div>
         
         <motion.p
-          className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto"
+          className="text-xl md:text-2xl text-foreground/80 max-w-2xl mx-auto font-medium"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           style={{
-            textShadow: "0 2px 10px rgba(0,0,0,0.5)",
+            textShadow: "0 2px 20px rgba(0,0,0,0.5)",
           }}
         >
-          Your personal collection of awesome apps built just for you!
+          🎮 Your personal collection of awesome apps built just for you! 🚀
         </motion.p>
         
         <motion.div
@@ -229,41 +265,54 @@ function HeroSection({ onExplore }: { onExplore: () => void }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
+          {/* Enhanced button with glow pulse */}
           <Button
             size="lg"
             onClick={onExplore}
-            className="text-lg px-8 py-6 bg-gradient-to-r from-violet-500 to-cyan-500 border-none shadow-lg shadow-violet-500/30"
+            className="text-xl px-10 py-7 rounded-2xl bg-gradient-to-r from-violet-500 via-purple-500 to-cyan-500 border-none animate-glow-pulse hover:scale-105 transition-transform duration-300 font-bold uppercase tracking-wide"
             data-testid="button-explore-apps"
           >
-            <Gamepad2 className="w-6 h-6 mr-2" />
+            <Gamepad2 className="w-7 h-7 mr-3" />
             Explore Apps
-            <ArrowRight className="w-5 h-5 ml-2" />
+            <ArrowRight className="w-6 h-6 ml-3" />
           </Button>
         </motion.div>
         
+        {/* Enhanced floating shapes with more variety */}
         <motion.div
-          className="flex justify-center gap-4 pt-8"
+          className="flex justify-center gap-6 pt-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          {["circle", "triangle", "square"].map((shape, i) => (
+          {[
+            { shape: "star", color: "text-yellow-400", size: "w-8 h-8" },
+            { shape: "circle", color: "text-cyan-400", size: "w-7 h-7" },
+            { shape: "triangle", color: "text-violet-400", size: "w-8 h-8" },
+            { shape: "hexagon", color: "text-emerald-400", size: "w-7 h-7" },
+            { shape: "square", color: "text-pink-400", size: "w-8 h-8" },
+          ].map((item, i) => (
             <motion.div
-              key={shape}
+              key={item.shape}
               animate={{ 
-                y: [0, -10, 0],
-                rotate: [0, 10, -10, 0],
+                y: [0, -15, 0],
+                rotate: [0, 15, -15, 0],
+                scale: [1, 1.1, 1],
               }}
               transition={{ 
-                duration: 2, 
-                delay: i * 0.2, 
+                duration: 2.5, 
+                delay: i * 0.15, 
                 repeat: Infinity,
+                ease: "easeInOut",
               }}
-              className="text-violet-400/60"
+              className={`${item.color} drop-shadow-lg`}
+              style={{ filter: `drop-shadow(0 0 8px currentColor)` }}
             >
-              {shape === "circle" && <Circle className="w-8 h-8" />}
-              {shape === "triangle" && <Triangle className="w-8 h-8" />}
-              {shape === "square" && <Square className="w-8 h-8" />}
+              {item.shape === "circle" && <Circle className={item.size} />}
+              {item.shape === "triangle" && <Triangle className={item.size} />}
+              {item.shape === "square" && <Square className={item.size} />}
+              {item.shape === "hexagon" && <Hexagon className={item.size} />}
+              {item.shape === "star" && <Star className={item.size} fill="currentColor" />}
             </motion.div>
           ))}
         </motion.div>
@@ -276,61 +325,174 @@ function AppCard({ app, index }: { app: App; index: number }) {
   const Icon = iconMap[app.iconName] || Gamepad2;
   const gradientClass = colorMap[app.colorClass] || colorMap.purple;
   const glowClass = glowMap[app.colorClass] || glowMap.purple;
+  const borderClass = borderColorMap[app.colorClass] || borderColorMap.purple;
+  const hoverGlow = hoverGlowMap[app.colorClass] || hoverGlowMap.purple;
   const isActive = app.status === "active";
   
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
+      whileHover={isActive ? { scale: 1.03, y: -5 } : {}}
     >
       <Card 
-        className={`group relative overflow-visible border-2 border-border/50 transition-all duration-300 ${
-          isActive ? `hover:shadow-xl ${glowClass}` : "opacity-70"
+        className={`group relative overflow-visible border-4 ${borderClass} rounded-2xl transition-all duration-300 ${
+          isActive 
+            ? `hover:shadow-xl ${hoverGlow} cursor-pointer bg-card/80 backdrop-blur-sm` 
+            : "opacity-60 bg-card/50"
         }`}
         data-testid={`card-app-${app.id}`}
       >
+        {/* Gradient border glow effect for active cards */}
+        {isActive && (
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-violet-500/20 via-cyan-500/20 to-emerald-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+        )}
+        
         <CardContent className="p-6 space-y-4">
           <div className="flex items-start justify-between gap-4">
-            <div className={`p-3 rounded-xl bg-gradient-to-br ${gradientClass} shadow-lg`}>
-              <Icon className="w-8 h-8 text-white" />
-            </div>
+            {/* Enhanced icon with glow effect */}
+            <motion.div 
+              className={`p-4 rounded-2xl bg-gradient-to-br ${gradientClass} shadow-lg`}
+              whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
+              transition={{ duration: 0.3 }}
+              style={{ boxShadow: isActive ? `0 8px 25px ${app.colorClass === 'purple' ? 'rgba(139, 92, 246, 0.4)' : app.colorClass === 'cyan' ? 'rgba(34, 211, 238, 0.4)' : app.colorClass === 'green' ? 'rgba(52, 211, 153, 0.4)' : app.colorClass === 'orange' ? 'rgba(251, 146, 60, 0.4)' : 'rgba(96, 165, 250, 0.4)'}` : undefined }}
+            >
+              <Icon className="w-8 h-8 text-white drop-shadow-md" />
+            </motion.div>
             <Badge 
               variant={isActive ? "default" : "secondary"}
-              className={isActive ? "bg-emerald-500 text-white" : ""}
+              className={isActive 
+                ? "bg-gradient-to-r from-emerald-400 to-green-500 text-white font-bold uppercase text-xs px-3 py-1 shadow-lg shadow-emerald-500/30" 
+                : "uppercase text-xs"
+              }
             >
-              {app.status}
+              {app.status === "active" ? "🟢 Active" : "⏳ Coming Soon"}
             </Badge>
           </div>
           
           <div className="space-y-2">
-            <h3 className="text-xl font-bold">{app.title}</h3>
-            <p className="text-sm text-muted-foreground line-clamp-2">
+            <h3 className="text-2xl font-bold tracking-tight">{app.title}</h3>
+            <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
               {app.description}
             </p>
           </div>
           
           {isActive ? (
             <Button 
-              className="w-full"
+              className="w-full rounded-xl py-5 text-base font-bold uppercase tracking-wide bg-gradient-to-r from-violet-500 to-cyan-500 hover:from-violet-600 hover:to-cyan-600 shadow-lg hover:shadow-xl transition-all duration-300"
               onClick={() => window.open(app.url, "_blank")}
               data-testid={`button-launch-${app.id}`}
             >
-              <ExternalLink className="w-4 h-4 mr-2" />
+              <Rocket className="w-5 h-5 mr-2" />
               Launch App
+              <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           ) : (
             <Button 
-              className="w-full" 
+              className="w-full rounded-xl py-5 text-base font-bold uppercase tracking-wide" 
               variant="secondary"
               disabled
             >
+              <Clock className="w-5 h-5 mr-2" />
               Coming Soon
             </Button>
           )}
         </CardContent>
       </Card>
     </motion.div>
+  );
+}
+
+function StatsSection({ appCount }: { appCount: number }) {
+  const stats = [
+    { icon: Trophy, label: "Total Apps", value: appCount.toString(), color: "text-yellow-400", bgColor: "from-yellow-500/20 to-orange-500/20" },
+    { icon: Clock, label: "Hours of Fun", value: "∞", color: "text-cyan-400", bgColor: "from-cyan-500/20 to-blue-500/20" },
+    { icon: MapPin, label: "Adventures Awaiting", value: "100+", color: "text-emerald-400", bgColor: "from-emerald-500/20 to-green-500/20" },
+  ];
+  
+  return (
+    <motion.div 
+      className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.3 }}
+    >
+      {stats.map((stat, index) => (
+        <motion.div
+          key={stat.label}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+          whileHover={{ scale: 1.05, y: -5 }}
+          className={`relative p-6 rounded-2xl bg-gradient-to-br ${stat.bgColor} border-2 border-white/10 backdrop-blur-sm text-center`}
+        >
+          <motion.div 
+            className={`mx-auto w-16 h-16 rounded-full bg-card/50 flex items-center justify-center mb-4 ${stat.color}`}
+            animate={{ rotate: [0, 5, -5, 0] }}
+            transition={{ duration: 4, repeat: Infinity, delay: index * 0.5 }}
+          >
+            <stat.icon className="w-8 h-8" />
+          </motion.div>
+          <div className={`text-4xl font-black ${stat.color} mb-2`} style={{ textShadow: `0 0 20px currentColor` }}>
+            {stat.value}
+          </div>
+          <div className="text-sm text-muted-foreground uppercase tracking-wider font-bold">
+            {stat.label}
+          </div>
+        </motion.div>
+      ))}
+    </motion.div>
+  );
+}
+
+function Footer({ onBack }: { onBack: () => void }) {
+  return (
+    <motion.footer 
+      className="mt-20 pb-12 text-center relative z-10"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6, delay: 0.5 }}
+    >
+      <div className="max-w-4xl mx-auto space-y-6">
+        {/* Divider with glow */}
+        <div className="h-px bg-gradient-to-r from-transparent via-violet-500/50 to-transparent mb-8" />
+        
+        {/* Made with love message */}
+        <motion.p 
+          className="text-xl font-medium text-muted-foreground"
+          animate={{ scale: [1, 1.02, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          Made with <Heart className="inline w-5 h-5 text-red-500 fill-red-500 mx-1" /> for Aidan
+        </motion.p>
+        
+        {/* Back to top button */}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={onBack}
+          className="text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <ArrowUp className="w-4 h-4 mr-2" />
+          Back to Portal
+        </Button>
+        
+        {/* Floating emoji decorations */}
+        <div className="flex justify-center gap-4 pt-4">
+          {["🎮", "🚀", "⭐", "🎯", "🏆"].map((emoji, i) => (
+            <motion.span
+              key={i}
+              className="text-2xl"
+              animate={{ y: [0, -8, 0], rotate: [0, 10, -10, 0] }}
+              transition={{ duration: 2, delay: i * 0.2, repeat: Infinity }}
+            >
+              {emoji}
+            </motion.span>
+          ))}
+        </div>
+      </div>
+    </motion.footer>
   );
 }
 
@@ -342,6 +504,7 @@ function AppsSection({ onBack }: { onBack: () => void }) {
   return (
     <section className="min-h-screen px-4 py-12 relative z-10">
       <div className="max-w-6xl mx-auto space-y-8">
+        {/* Enhanced header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -349,42 +512,46 @@ function AppsSection({ onBack }: { onBack: () => void }) {
         >
           <div>
             <h2 
-              className="text-3xl md:text-4xl uppercase font-normal"
+              className="text-3xl md:text-4xl font-black uppercase tracking-tight gaming-text-gradient"
               style={{
-                textShadow: "0 0 20px hsl(var(--primary) / 0.3)",
+                textShadow: "0 0 30px hsl(var(--primary) / 0.3)",
               }}
-            >Welcome doodle-tastic dusty</h2>
-            <p className="text-muted-foreground mt-1">Choose what you want to do today</p>
+            >
+              🎮 Welcome Aidan! 🎮
+            </h2>
+            <p className="text-lg text-muted-foreground mt-2 font-medium">Choose your next adventure</p>
           </div>
           <Button 
             variant="outline" 
             onClick={onBack}
+            className="rounded-xl border-2 hover:border-violet-500/50 transition-colors"
             data-testid="button-back-home"
           >
+            <ArrowUp className="w-4 h-4 mr-2" />
             Back to Home
           </Button>
         </motion.div>
         
         {isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3, 4].map((i) => (
-              <Card key={i} className="animate-pulse">
+              <Card key={i} className="animate-pulse rounded-2xl border-4 border-border/30">
                 <CardContent className="p-6 space-y-4">
                   <div className="flex items-start justify-between gap-4">
-                    <div className="w-14 h-14 rounded-xl bg-muted" />
-                    <div className="w-16 h-6 rounded-full bg-muted" />
+                    <div className="w-16 h-16 rounded-2xl bg-muted" />
+                    <div className="w-20 h-6 rounded-full bg-muted" />
                   </div>
                   <div className="space-y-2">
-                    <div className="w-32 h-6 rounded bg-muted" />
-                    <div className="w-full h-10 rounded bg-muted" />
+                    <div className="w-32 h-7 rounded bg-muted" />
+                    <div className="w-full h-12 rounded bg-muted" />
                   </div>
-                  <div className="w-full h-10 rounded bg-muted" />
+                  <div className="w-full h-12 rounded-xl bg-muted" />
                 </CardContent>
               </Card>
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {apps?.map((app, index) => (
               <AppCard key={app.id} app={app} index={index} />
             ))}
@@ -404,6 +571,14 @@ function AppsSection({ onBack }: { onBack: () => void }) {
             </p>
           </motion.div>
         )}
+        
+        {/* Stats Section */}
+        {!isLoading && apps && apps.length > 0 && (
+          <StatsSection appCount={apps.length} />
+        )}
+        
+        {/* Footer */}
+        <Footer onBack={onBack} />
       </div>
     </section>
   );
