@@ -354,13 +354,11 @@ function AppsSection({ onBack }: { onBack: () => void }) {
         >
           <div>
             <h2 
-              className="text-3xl md:text-4xl font-black uppercase"
+              className="text-3xl md:text-4xl uppercase font-normal"
               style={{
                 textShadow: "0 0 20px hsl(var(--primary) / 0.3)",
               }}
-            >
-              Your Apps
-            </h2>
+            >Welcome doodle-tastic dusty</h2>
             <p className="text-muted-foreground mt-1">
               Choose an app to launch
             </p>
