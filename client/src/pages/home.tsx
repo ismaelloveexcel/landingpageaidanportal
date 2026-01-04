@@ -293,7 +293,7 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
           transition={{ duration: 0.8, delay: 0.5 }}
         >
           <motion.div 
-            className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 cursor-pointer overflow-visible"
+            className="w-80 h-80 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem] cursor-pointer overflow-visible"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             onClick={onAdminClick}

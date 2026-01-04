@@ -36,7 +36,7 @@ function DemogorgonModel() {
   return (
     <Float speed={1.5} rotationIntensity={0.15} floatIntensity={0.25}>
       <group ref={groupRef}>
-        <primitive object={scene} scale={1.4} position={[0, 0, 0]} />
+        <primitive object={scene} scale={2} position={[0, 0, 0]} />
       </group>
     </Float>
   );
