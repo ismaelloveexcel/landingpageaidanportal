@@ -279,28 +279,45 @@ function HeroSection({ onExplore, onAdminClick }: { onExplore: () => void; onAdm
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {/* Enhanced title with animated gradient */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight">
+          {/* Stranger Things style title */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-widest">
             <motion.span 
-              className="block gaming-text-gradient"
+              className="block text-red-500"
               style={{ 
-                textShadow: "0 4px 30px rgba(34, 211, 238, 0.3)",
-                filter: "drop-shadow(0 0 20px rgba(34, 211, 238, 0.2))"
+                fontFamily: "'Times New Roman', serif",
+                letterSpacing: "0.15em",
+                textShadow: "0 0 10px rgba(239, 68, 68, 0.8), 0 0 20px rgba(239, 68, 68, 0.6), 0 0 40px rgba(239, 68, 68, 0.4), 0 0 80px rgba(239, 68, 68, 0.3)",
+                filter: "drop-shadow(0 0 30px rgba(239, 68, 68, 0.5))"
               }}
-              animate={{ scale: [1, 1.02, 1] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              animate={{ 
+                opacity: [1, 0.85, 1],
+                textShadow: [
+                  "0 0 10px rgba(239, 68, 68, 0.8), 0 0 20px rgba(239, 68, 68, 0.6), 0 0 40px rgba(239, 68, 68, 0.4), 0 0 80px rgba(239, 68, 68, 0.3)",
+                  "0 0 15px rgba(239, 68, 68, 1), 0 0 30px rgba(239, 68, 68, 0.8), 0 0 60px rgba(239, 68, 68, 0.5), 0 0 100px rgba(239, 68, 68, 0.4)",
+                  "0 0 10px rgba(239, 68, 68, 0.8), 0 0 20px rgba(239, 68, 68, 0.6), 0 0 40px rgba(239, 68, 68, 0.4), 0 0 80px rgba(239, 68, 68, 0.3)"
+                ]
+              }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             >
               Aidan's
             </motion.span>
             <motion.span 
-              className="block bg-gradient-to-r from-violet-400 via-purple-400 to-violet-400 bg-clip-text text-transparent animate-gradient-shift"
+              className="block text-red-500"
               style={{ 
-                textShadow: "0 4px 30px rgba(139, 92, 246, 0.3)",
-                filter: "drop-shadow(0 0 20px rgba(139, 92, 246, 0.2))",
-                backgroundSize: "200% auto"
+                fontFamily: "'Times New Roman', serif",
+                letterSpacing: "0.15em",
+                textShadow: "0 0 10px rgba(239, 68, 68, 0.8), 0 0 20px rgba(239, 68, 68, 0.6), 0 0 40px rgba(239, 68, 68, 0.4), 0 0 80px rgba(239, 68, 68, 0.3)",
+                filter: "drop-shadow(0 0 30px rgba(239, 68, 68, 0.5))"
               }}
-              animate={{ scale: [1, 1.02, 1] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              animate={{ 
+                opacity: [1, 0.85, 1],
+                textShadow: [
+                  "0 0 10px rgba(239, 68, 68, 0.8), 0 0 20px rgba(239, 68, 68, 0.6), 0 0 40px rgba(239, 68, 68, 0.4), 0 0 80px rgba(239, 68, 68, 0.3)",
+                  "0 0 15px rgba(239, 68, 68, 1), 0 0 30px rgba(239, 68, 68, 0.8), 0 0 60px rgba(239, 68, 68, 0.5), 0 0 100px rgba(239, 68, 68, 0.4)",
+                  "0 0 10px rgba(239, 68, 68, 0.8), 0 0 20px rgba(239, 68, 68, 0.6), 0 0 40px rgba(239, 68, 68, 0.4), 0 0 80px rgba(239, 68, 68, 0.3)"
+                ]
+              }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
             >
               App Portal
             </motion.span>
