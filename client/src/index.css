@@ -343,15 +343,15 @@
   animation: card-glow 3s ease-in-out infinite;
 }
 
-/* Gaming text gradient effect */
+/* Gaming text gradient effect - now with multi-theme colors */
 .gaming-text-gradient {
   background: linear-gradient(
     90deg,
-    #22d3ee 0%,
-    #a78bfa 25%,
-    #22d3ee 50%,
-    #a78bfa 75%,
-    #22d3ee 100%
+    #ec4899 0%,
+    #14b8a6 25%,
+    #a78bfa 50%,
+    #22d3ee 75%,
+    #ec4899 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
